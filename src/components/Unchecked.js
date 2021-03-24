@@ -1,8 +1,14 @@
 const Unchecked = ({ items, onCheckHandler }) => {
-  console.log('Unchecked: items', items);
-
   const checkHandler = (e) => {
     onCheckHandler(e.target.getAttribute('data-name'));
+  };
+
+  const Button = ({ name, clicker }) => {
+    return (
+      <button type="button" className="btn col-12 text-left" data-name={name} onClick={clicker}>
+        {name}
+      </button>
+    );
   };
 
   return (
@@ -13,12 +19,7 @@ const Unchecked = ({ items, onCheckHandler }) => {
           items.map((item, index) => {
             return (
               <div key={index} className="row mb-2">
-                <div className="col-9">{item}</div>
-                <div className="col-3 text-right">
-                  <button className="btn btn-success" data-name={item} onClick={checkHandler}>
-                    &#x2713;
-                  </button>
-                </div>
+                <Button name={item} clicker={checkHandler} />
               </div>
             );
           })

@@ -22,6 +22,14 @@ const Add = ({ onInputHandler, warning }) => {
 
   useEffect(() => {
     setShowWarning(warning);
+
+    const alertTimer = setTimeout(() => {
+      // console.log('Timer ended');
+      setShowWarning(false);
+    }, 5000);
+    return () => {
+      clearTimeout(alertTimer);
+    };
   }, [warning]);
 
   return (

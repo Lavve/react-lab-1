@@ -24,14 +24,11 @@ const App = () => {
     setShowError(false);
 
     if (!unchecked.includes(value) && !checked.includes(value)) {
-      console.log('ADDING TO UNCHECKED', value);
       setUnchecked([...unchecked, value]);
     } else {
       if (checked.includes(value)) {
-        console.log('MOVING TO UNCHECKED', value);
         moveToUnchecked(value);
       } else {
-        console.log('ON LIST', value);
         setShowError(true);
       }
     }

@@ -1,12 +1,19 @@
 const Checked = ({ items, onMoveHandler, onDeleteItem }) => {
-  console.log('Checked: items', items);
-
   const moveHandler = (e) => {
     onMoveHandler(e.target.getAttribute('data-name'));
   };
 
   const deleteItem = (e) => {
     onDeleteItem(e.target.getAttribute('data-name'));
+  };
+
+  const Button = ({ name, clicker, type }) => {
+    const btnClass = type === 'delete' ? 'btn-danger col-2' : 'col-10 text-left';
+    return (
+      <button type="button" className={`btn ${btnClass}`} data-name={name} onClick={clicker}>
+        {type === 'delete' ? <>&times;</> : <del>{name}</del>}
+      </button>
+    );
   };
 
   return (
@@ -17,24 +24,13 @@ const Checked = ({ items, onMoveHandler, onDeleteItem }) => {
           items.map((item, index) => {
             return (
               <div key={index} className="row mb-2">
-                <div className="col-6">
-                  <del>{item}</del>
-                </div>
-                <div className="col-3 text-right">
-                  <button className="btn btn-warning" data-name={item} onClick={moveHandler}>
-                    &#8593;
-                  </button>
-                </div>
-                <div className="col-3 text-right">
-                  <button className="btn btn-danger" data-name={item} onClick={deleteItem}>
-                    &times;
-                  </button>
-                </div>
+                <Button name={item} clicker={moveHandler} type="move" />
+                <Button name={item} clicker={deleteItem} type="delete" />
               </div>
             );
           })
         ) : (
-          <p>Här hamnar de artiklar du bockat av.</p>
+          <p>Här hamnar de artiklar du klickat på i listan ovan.</p>
         )}
       </div>
     </div>
