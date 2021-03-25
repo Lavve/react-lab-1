@@ -22,7 +22,7 @@ const Checked = ({ items, onMoveHandler, onDeleteItem }) => {
             );
           })
         ) : (
-          <p className="col-12 mb-0">Här hamnar de artiklar du klickat på i listan ovan.</p>
+          <p className="mb-2">Här hamnar de artiklar du klickat på i listan ovan.</p>
         )}
       </div>
     </div>
