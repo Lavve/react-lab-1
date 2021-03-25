@@ -1,8 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 
 const Add = ({ onInputHandler, warning }) => {
   const [article, setArticle] = useState('');
   const [showWarning, setShowWarning] = useState(warning);
+
+  const alertTimer = useRef(null);
 
   const inputHandler = (e) => {
     setArticle(e.target.value);
@@ -10,6 +12,9 @@ const Add = ({ onInputHandler, warning }) => {
 
   const closeAlert = () => {
     setShowWarning(false);
+    if (alertTimer.current) {
+      clearTimeout(alertTimer.current);
+    }
   };
 
   const submitHandler = (e) => {
@@ -17,18 +22,22 @@ const Add = ({ onInputHandler, warning }) => {
     if (article.trim() !== '') {
       onInputHandler(article);
       setArticle('');
+      setShowWarning(false);
+      if (alertTimer.current) {
+        clearTimeout(alertTimer.current);
+      }
     }
   };
 
   useEffect(() => {
+    console.log('WARNING', warning);
     setShowWarning(warning);
 
-    const alertTimer = setTimeout(() => {
-      // console.log('Timer ended');
+    alertTimer.current = setTimeout(() => {
       setShowWarning(false);
     }, 5000);
     return () => {
-      clearTimeout(alertTimer);
+      clearTimeout(alertTimer.current);
     };
   }, [warning]);
 

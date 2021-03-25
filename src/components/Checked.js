@@ -1,16 +1,8 @@
 const Checked = ({ items, onMoveHandler, onDeleteItem }) => {
-  const moveHandler = (e) => {
-    onMoveHandler(e.target.getAttribute('data-name'));
-  };
-
-  const deleteItem = (e) => {
-    onDeleteItem(e.target.getAttribute('data-name'));
-  };
-
   const Button = ({ name, clicker, type }) => {
-    const btnClass = type === 'delete' ? 'btn-danger col-2' : 'col-10 text-left';
+    const btnClass = type === 'delete' ? 'btn-danger mr-2' : 'col text-left';
     return (
-      <button type="button" className={`btn ${btnClass}`} data-name={name} onClick={clicker}>
+      <button type="button" className={`btn ${btnClass}`} onClick={clicker}>
         {type === 'delete' ? <>&times;</> : <del>{name}</del>}
       </button>
     );
@@ -24,13 +16,13 @@ const Checked = ({ items, onMoveHandler, onDeleteItem }) => {
           items.map((item, index) => {
             return (
               <div key={index} className="row mb-2">
-                <Button name={item} clicker={moveHandler} type="move" />
-                <Button name={item} clicker={deleteItem} type="delete" />
+                <Button name={item} clicker={() => onMoveHandler(item)} type="move" />
+                <Button name={item} clicker={() => onDeleteItem(item)} type="delete" />
               </div>
             );
           })
         ) : (
-          <p>Här hamnar de artiklar du klickat på i listan ovan.</p>
+          <p className="col-12 mb-0">Här hamnar de artiklar du klickat på i listan ovan.</p>
         )}
       </div>
     </div>

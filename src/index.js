@@ -14,12 +14,6 @@ const App = () => {
   const [checked, setChecked] = useState(jsonChecked);
   const [showError, setShowError] = useState(false);
 
-  const moveToUnchecked = (value) => {
-    const rest = checked.filter((item) => item !== value);
-    setChecked(rest);
-    setUnchecked([...unchecked, value]);
-  };
-
   const onInput = (value) => {
     setShowError(false);
 
@@ -44,6 +38,12 @@ const App = () => {
     const rest = checked.filter((item) => item !== value);
     console.log('rest', value, rest);
     setChecked(rest);
+  };
+
+  const moveToUnchecked = (value) => {
+    const rest = checked.filter((item) => item !== value);
+    setChecked(rest);
+    setUnchecked([...unchecked, value]);
   };
 
   useEffect(() => {
