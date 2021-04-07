@@ -9,7 +9,7 @@ const Unchecked = ({ items, onCheckHandler }) => {
 
   return (
     <div className="card mb-3">
-      <div className="card-header">Min lista</div>
+      <div className="card-header h6">Oklara grejer ({items.length})</div>
       <div className="card-body pb-2">
         <div className="row mb-2">
           {items && items.length ? (
@@ -17,7 +17,7 @@ const Unchecked = ({ items, onCheckHandler }) => {
               return <Button key={index} name={item} clicker={() => onCheckHandler(item)} />;
             })
           ) : (
-            <p className="col-12 mb-0">Din lista är lite tom...</p>
+            <p className="col-12 mb-0">Inga grejer här just nu...</p>
           )}
         </div>
       </div>

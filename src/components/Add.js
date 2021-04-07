@@ -1,79 +1,53 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState } from 'react';
 
-const Add = ({ onInputHandler, warning }) => {
+const Add = ({ onSave, warning, closeWarning }) => {
   const [article, setArticle] = useState('');
-  const [showWarning, setShowWarning] = useState(warning);
-
-  const alertTimer = useRef(null);
+  const [latest, setLatest] = useState('');
 
   const inputHandler = (e) => {
     setArticle(e.target.value);
-  };
-
-  const closeAlert = () => {
-    setShowWarning(false);
-    if (alertTimer.current) {
-      clearTimeout(alertTimer.current);
-    }
+    setLatest(e.target.value);
   };
 
   const submitHandler = (e) => {
     e.preventDefault();
     if (article.trim() !== '') {
-      onInputHandler(article);
+      onSave(article);
       setArticle('');
-      setShowWarning(false);
-      if (alertTimer.current) {
-        clearTimeout(alertTimer.current);
-      }
     }
   };
-
-  useEffect(() => {
-    console.log('WARNING', warning);
-    setShowWarning(warning);
-
-    alertTimer.current = setTimeout(() => {
-      setShowWarning(false);
-    }, 5000);
-    return () => {
-      clearTimeout(alertTimer.current);
-    };
-  }, [warning]);
 
   return (
     <form onSubmit={submitHandler}>
       <div className="container">
         <div className="form-group row">
-          <div className="col-12 col-md-3">
-            <label htmlFor="article" className="col-form-label">
-              Ny artikel
-            </label>
-          </div>
-          <div className="col-10 col-md-7">
-            <input
-              type="text"
-              id="article"
-              className="form-control"
-              placeholder="Lägg till ny artikel"
-              value={article}
-              onChange={inputHandler}
-            />
-          </div>
-          <div className="col-2 col-md-2 text-right">
-            <button type="submit" className="btn btn-primary">
-              +
-            </button>
-          </div>
-        </div>
-        <div className={`row ${showWarning ? '' : 'd-none'}`}>
-          <div className="col-12">
-            <div className="alert alert-danger">
-              Artikeln finns redan på listan.
-              <button type="button" className="close" onClick={closeAlert}>
-                <span>&times;</span>
+          <div className="input-group">
+            <div className="col-12 col-md-3">
+              <label htmlFor="article" className="col-form-label h6">
+                Ny grej
+              </label>
+            </div>
+            <div className="col-9 col-md-7 px-0">
+              <input
+                type="text"
+                id="article"
+                className="form-control"
+                placeholder="Lägg till ny grej"
+                value={article}
+                onChange={inputHandler}
+              />
+            </div>
+            <div className="input-group-append col-3 col-md-2 px-0">
+              <button type="submit" className="btn btn-outline-primary w-100 font-weight-bold">
+                +
               </button>
             </div>
+          </div>
+          <div className={`alert alert-danger mt-1 w-100 ${warning ? '' : 'd-none'}`}>
+            "{latest}" finns redan på listan.
+            <button type="button" className="close" onClick={() => closeWarning()}>
+              <span>&times;</span>
+            </button>
           </div>
         </div>
       </div>

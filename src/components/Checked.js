@@ -1,6 +1,7 @@
 const Checked = ({ items, onMoveHandler, onDeleteItem }) => {
   const Button = ({ name, clicker, type }) => {
-    const btnClass = type === 'delete' ? 'btn-danger mr-2' : 'col text-left';
+    const btnClass =
+      type === 'delete' ? 'btn-outline-danger font-weight-bold rounded-circle mr-2' : 'col text-left';
     return (
       <button type="button" className={`btn ${btnClass}`} onClick={clicker}>
         {type === 'delete' ? <>&times;</> : <del>{name}</del>}
@@ -10,7 +11,7 @@ const Checked = ({ items, onMoveHandler, onDeleteItem }) => {
 
   return (
     <div className="card">
-      <div className="card-header">Klart</div>
+      <div className="card-header h6">Klara grejer ({items.length})</div>
       <div className="card-body pb-2">
         {items && items.length ? (
           items.map((item, index) => {
@@ -22,7 +23,7 @@ const Checked = ({ items, onMoveHandler, onDeleteItem }) => {
             );
           })
         ) : (
-          <p className="mb-2">Här hamnar de artiklar du klickat på i listan ovan.</p>
+          <p className="mb-2">Här hamnar de grejer du klickat på i listan ovan.</p>
         )}
       </div>
     </div>
