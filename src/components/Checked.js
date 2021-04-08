@@ -1,7 +1,7 @@
 const Checked = ({ items, onMoveHandler, onDeleteItem }) => {
   const Button = ({ name, clicker, type }) => {
     const btnClass =
-      type === 'delete' ? 'btn-outline-danger font-weight-bold rounded-circle mr-2' : 'col text-left';
+      type === 'delete' ? 'btn-outline-danger action font-weight-bold rounded-circle mr-2' : 'col text-left';
     return (
       <button type="button" className={`btn ${btnClass}`} onClick={clicker}>
         {type === 'delete' ? <>&times;</> : <del>{name}</del>}
@@ -10,8 +10,8 @@ const Checked = ({ items, onMoveHandler, onDeleteItem }) => {
   };
 
   return (
-    <div className="card">
-      <div className="card-header h6">Klara grejer ({items.length})</div>
+    <div className="card border-dark">
+      <div className="card-header text-white bg-dark h6">Färdiga grejer ({items.length})</div>
       <div className="card-body pb-2">
         {items && items.length ? (
           items.map((item, index) => {

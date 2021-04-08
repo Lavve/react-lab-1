@@ -8,8 +8,8 @@ const Unchecked = ({ items, onCheckHandler }) => {
   };
 
   return (
-    <div className="card mb-3">
-      <div className="card-header h6">Oklara grejer ({items.length})</div>
+    <div className="card border-dark mb-3">
+      <div className="card-header text-white bg-dark h6">Oklara grejer ({items.length})</div>
       <div className="card-body pb-2">
         <div className="row mb-2">
           {items && items.length ? (

@@ -12,7 +12,7 @@ const Add = ({ onSave, warning, closeWarning }) => {
   const submitHandler = (e) => {
     e.preventDefault();
     if (article.trim() !== '') {
-      onSave(article);
+      onSave(article.trim());
       setArticle('');
     }
   };
@@ -31,14 +31,18 @@ const Add = ({ onSave, warning, closeWarning }) => {
               <input
                 type="text"
                 id="article"
-                className="form-control"
+                className="form-control border-dark"
                 placeholder="Lägg till ny grej"
                 value={article}
                 onChange={inputHandler}
               />
             </div>
             <div className="input-group-append col-3 col-md-2 px-0">
-              <button type="submit" className="btn btn-outline-primary w-100 font-weight-bold">
+              <button
+                type="submit"
+                className={`btn btn-info action w-100 font-weight-bold ${!article ? 'btn-outline-info' : ''}`}
+                disabled={!article}
+              >
                 +
               </button>
             </div>
