@@ -1,3 +1,3 @@
 # React lab 1
 
-[Demo](https://lavve.github.io/react-lab-1/build/)
+[React lab 1](https://lavve.github.io/react-lab-1/build/)
