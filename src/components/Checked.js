@@ -11,7 +11,9 @@ const Checked = ({ items, onMoveHandler, onDeleteItem }) => {
 
   return (
     <div className="card border-dark">
-      <div className="card-header text-white bg-dark h6">Färdiga grejer ({items.length})</div>
+      <div className="card-header text-white bg-dark h6">
+        Färdiga grejer {items.length ? '(' + items.length + ')' : null}
+      </div>
       <div className="card-body pb-2">
         {items && items.length ? (
           items.map((item, index) => {
