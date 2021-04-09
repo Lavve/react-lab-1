@@ -23,7 +23,7 @@ const Add = ({ onSave, warning, closeWarning }) => {
         <div className="form-group row">
           <div className="input-group">
             <div className="col-12 col-md-3">
-              <label htmlFor="article" className="col-form-label h6">
+              <label htmlFor="article" className="col-form-label form-label">
                 Ny grej
               </label>
             </div>
@@ -32,7 +32,7 @@ const Add = ({ onSave, warning, closeWarning }) => {
                 type="text"
                 id="article"
                 className="form-control border-dark"
-                placeholder="Lägg till ny grej"
+                placeholder="Lägg till ny grej här"
                 value={article}
                 onChange={inputHandler}
               />
@@ -40,17 +40,19 @@ const Add = ({ onSave, warning, closeWarning }) => {
             <div className="input-group-append col-3 col-md-2 px-0">
               <button
                 type="submit"
-                className={`btn btn-info action w-100 font-weight-bold ${!article ? 'btn-outline-info' : ''}`}
+                className={`btn btn-success action w-100 font-weight-bold ${
+                  !article ? 'btn-outline-success' : ''
+                }`}
                 disabled={!article}
               >
-                +
+                <span class="oi oi-plus"></span>
               </button>
             </div>
           </div>
           <div className={`alert alert-danger mt-1 w-100 ${warning ? '' : 'd-none'}`}>
-            "{latest}" finns redan på listan.
+            Meh, "{latest}" finns ju redan på listan...
             <button type="button" className="close" onClick={() => closeWarning()}>
-              <span>&times;</span>
+              <span class="oi oi-circle-x"></span>
             </button>
           </div>
         </div>

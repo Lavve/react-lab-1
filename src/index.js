@@ -1,12 +1,14 @@
 import React, { useState, useEffect, useRef } from 'react';
 import ReactDOM from 'react-dom';
 
+import Header from './components/Header';
 import Add from './components/Add';
 import Unchecked from './components/Unchecked';
 import Checked from './components/Checked';
 import Confirm from './components/Confirm';
 
 import '../node_modules/bootstrap/dist/css/bootstrap.css';
+import '../node_modules/open-iconic/font/css/open-iconic-bootstrap.css';
 import './index.css';
 
 const App = () => {
@@ -112,12 +114,10 @@ const App = () => {
 
   return (
     <>
-      <div className="container my-3">
+      <div className="container my-3 pt-5">
         <div className="row justify-content-md-center">
           <div className="col-12 col-md-8">
-            <header>
-              <h1 className="text-center">Grejer</h1>
-            </header>
+            <Header />
             <Add onSave={onSave} warning={showError} closeWarning={closeWarning} />
             <Unchecked items={unchecked} onCheckHandler={checkItem} />
             <Checked items={checked} onMoveHandler={moveToUnchecked} onDeleteItem={confirmDelete} />
