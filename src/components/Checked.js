@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Badge from './Badge';
 
 const Checked = ({ items, onMoveHandler, onDeleteItem }) => {
-  const [isOpen, setIsOpen] = useState(true);
+  const [isOpen, setIsOpen] = useState(false);
 
   const toggleList = () => {
     setIsOpen(!isOpen);
