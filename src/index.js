@@ -44,7 +44,6 @@ const App = () => {
 
   const deleteItem = (value) => {
     const rest = checked.filter((item) => item !== value);
-    console.log('rest', value, rest);
     setModalVisible(false);
     setChecked(rest);
   };
@@ -79,24 +78,14 @@ const App = () => {
   };
 
   useEffect(() => {
-    const unchecked = JSON.parse(localStorage.getItem('unchecked'));
-    const checked = JSON.parse(localStorage.getItem('checked'));
-
-    if (unchecked) {
-      setUnchecked(unchecked);
-    }
-    if (checked) {
-      setChecked(checked);
-    }
-  }, []);
-
-  useEffect(() => {
     document.addEventListener('keydown', () => onCancel(), false);
 
     return document.removeEventListener('keydown', () => onCancel(), false);
   }, []);
 
   useEffect(() => {
+    setUnchecked(unchecked);
+    setChecked(checked);
     window.localStorage.setItem('unchecked', JSON.stringify(unchecked));
     window.localStorage.setItem('checked', JSON.stringify(checked));
   }, [unchecked, checked]);
