@@ -38,7 +38,7 @@ const Unchecked = ({ items, onCheckHandler }) => {
               return <Button key={index} name={item} clicker={() => onCheckHandler(item)} />;
             })
           ) : (
-            <p className="col-12 mb-0">Inga grejer här just nu...</p>
+            <p className="col-12 mb-2 text-light">Inga grejer här just nu...</p>
           )}
         </div>
       </div>

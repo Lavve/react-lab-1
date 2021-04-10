@@ -46,7 +46,7 @@ const Checked = ({ items, onMoveHandler, onDeleteItem }) => {
             );
           })
         ) : (
-          <p className="mb-2">Här hamnar de grejer du klickat på i listan ovan.</p>
+          <p className="mb-3 text-light">Här hamnar de grejer du klickat på i listan ovan.</p>
         )}
       </div>
     </div>
