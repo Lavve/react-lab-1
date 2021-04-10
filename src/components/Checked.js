@@ -11,23 +11,25 @@ const Checked = ({ items, onMoveHandler, onDeleteItem }) => {
 
   const Button = ({ name, clicker, type }) => {
     const btnClass =
-      type === 'delete' ? 'btn-danger action font-weight-bold rounded-circle mr-2' : 'col text-left';
+      type === 'delete'
+        ? 'btn-danger action font-weight-bold rounded-circle mr-2'
+        : 'col text-light text-left';
     return (
       <button type="button" className={`btn ${btnClass}`} onClick={clicker}>
-        {type === 'delete' ? <span class="oi oi-trash"></span> : <del>{name}</del>}
+        {type === 'delete' ? <span className="oi oi-trash"></span> : <del>{name}</del>}
       </button>
     );
   };
 
   return (
-    <div className="card shadow">
-      <div className="card-header text-white bg-dark h3 d-flex justify-content-between">
+    <div className="card border-secondary shadow">
+      <div className="card-header text-light bg-dark h3 d-flex justify-content-between">
         <span>Färdiga grejer {items.length ? <Badge txt={items.length} /> : null}</span>
         <button type="button" className="btn text-light open" onClick={toggleList}>
           <span className="oi oi-chevron-bottom"></span>
         </button>
       </div>
-      <div className="card-body pb-2 checkedList open">
+      <div className="card-body bg-secondary pb-2 checkedList open">
         {items && items.length ? (
           items.map((item, index) => {
             return (

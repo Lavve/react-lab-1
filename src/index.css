@@ -1,3 +1,7 @@
+body {
+  background: #343a40;
+}
+
 .header {
   overflow: hidden;
   position: fixed;
@@ -14,7 +18,7 @@
   height: 280px;
   border-radius: 50%;
   border: 1px solid rgba(0, 0, 0, 0.4);
-  background: #343a40;
+  background: rgba(73, 80, 87, 0.9);
   box-shadow: 0 0.5rem 0.5rem rgb(33 37 41 / 40%);
   top: -220px;
   left: 50%;
@@ -22,6 +26,8 @@
 }
 .header h1 {
   z-index: 1;
+  color: #343a40;
+  text-shadow: 1px 1px rgb(255 255 255 / 20%), -1px -1px rgb(0 0 0 / 40%);
 }
 
 .modal-backdrop {

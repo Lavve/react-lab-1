@@ -11,21 +11,21 @@ const Unchecked = ({ items, onCheckHandler }) => {
 
   const Button = ({ name, clicker }) => {
     return (
-      <button type="button" className="btn col-12 mb-2 text-left" onClick={clicker}>
+      <button type="button" className="btn col-12 mb-2 text-light text-left" onClick={clicker}>
         {name}
       </button>
     );
   };
 
   return (
-    <div className="card mb-3 shadow">
-      <div className="card-header text-white bg-dark h3 d-flex justify-content-between">
+    <div className="card border-secondary mb-3 shadow">
+      <div className="card-header text-light bg-dark h3 d-flex justify-content-between">
         <span>Oklara grejer {items.length ? <Badge txt={items.length} /> : null}</span>
         <button type="button" className="btn text-light open" onClick={toggleList}>
           <span className="oi oi-chevron-bottom"></span>
         </button>
       </div>
-      <div className="card-body pb-2 uncheckedList open">
+      <div className="card-body bg-secondary pb-2 uncheckedList open">
         <div className="row mb-2">
           {items && items.length ? (
             items.map((item, index) => {

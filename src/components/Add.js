@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 const Add = ({ onSave, warning, closeWarning }) => {
   const [article, setArticle] = useState('');
@@ -17,13 +17,20 @@ const Add = ({ onSave, warning, closeWarning }) => {
     }
   };
 
+  useEffect(() => {
+    const input = document.getElementById('article');
+    if (article === '') {
+      input.focus();
+    }
+  }, [article]);
+
   return (
     <form onSubmit={submitHandler}>
       <div className="container">
         <div className="form-group row">
           <div className="input-group">
             <div className="col-12 col-md-3">
-              <label htmlFor="article" className="col-form-label form-label">
+              <label htmlFor="article" className="col-form-label text-light form-label">
                 Ny grej
               </label>
             </div>
@@ -45,14 +52,14 @@ const Add = ({ onSave, warning, closeWarning }) => {
                 }`}
                 disabled={!article}
               >
-                <span class="oi oi-plus"></span>
+                <span className="oi oi-plus"></span>
               </button>
             </div>
           </div>
           <div className={`alert alert-danger mt-1 w-100 ${warning ? '' : 'd-none'}`}>
             Meh, "{latest}" finns ju redan på listan...
             <button type="button" className="close" onClick={() => closeWarning()}>
-              <span class="oi oi-circle-x"></span>
+              <span className="oi oi-circle-x"></span>
             </button>
           </div>
         </div>
