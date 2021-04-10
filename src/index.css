@@ -41,8 +41,9 @@ body {
 .oi-chevron-bottom {
   pointer-events: none;
   transition: transform 0.23s;
+  font-size: 1rem;
 }
-.open > .oi-chevron-bottom {
+.open .oi-chevron-bottom {
   transform: rotate(180deg);
 }
 
@@ -58,8 +59,8 @@ body {
   padding-bottom: 0 !important;
 }
 
-.checkedList.open,
-.uncheckedList.open {
+.open .checkedList,
+.open .uncheckedList {
   opacity: 1;
   height: auto;
   max-height: 1000px;

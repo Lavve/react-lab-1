@@ -1,35 +1,41 @@
-const Checked = ({ items, onMoveHandler, onDeleteItem }) => {
-  const listBlock = document.querySelector('.checkedList');
-  const toggleList = (e) => {
-    e.target.classList.toggle('open');
-    listBlock.classList.toggle('open');
-  };
+import React, { useState, useEffect } from 'react';
+import Badge from './Badge';
 
-  const Badge = ({ txt }) => {
-    return <span className="badge badge-success">{txt}</span>;
+const Checked = ({ items, onMoveHandler, onDeleteItem }) => {
+  const [isOpen, setIsOpen] = useState(true);
+
+  const toggleList = () => {
+    setIsOpen(!isOpen);
   };
 
   const Button = ({ name, clicker, type }) => {
     const btnClass =
       type === 'delete'
-        ? 'btn-danger action font-weight-bold rounded-circle mr-2'
-        : 'col text-light text-left';
+        ? 'btn btn-danger action font-weight-bold rounded-circle mr-2'
+        : 'btn col text-light text-left';
     return (
-      <button type="button" className={`btn ${btnClass}`} onClick={clicker}>
+      <button type="button" className={`${btnClass}`} onClick={clicker}>
         {type === 'delete' ? <span className="oi oi-trash"></span> : <del>{name}</del>}
       </button>
     );
   };
 
+  useEffect(() => {
+    setIsOpen(items.length);
+  }, [items]);
+
   return (
-    <div className="card border-secondary shadow">
-      <div className="card-header text-light bg-dark h3 d-flex justify-content-between">
-        <span>Färdiga grejer {items.length ? <Badge txt={items.length} /> : null}</span>
-        <button type="button" className="btn text-light open" onClick={toggleList}>
-          <span className="oi oi-chevron-bottom"></span>
-        </button>
+    <div className={`card border-secondary ${isOpen ? 'open' : ''}`}>
+      <div
+        className="card-header text-light bg-dark h3 d-flex align-items-center justify-content-between"
+        onClick={toggleList}
+      >
+        <span>
+          Färdiga grejer <Badge num={items.length} type="success" />
+        </span>
+        <span className="oi oi-chevron-bottom"></span>
       </div>
-      <div className="card-body bg-secondary pb-2 checkedList open">
+      <div className="card-body bg-secondary pb-2 checkedList">
         {items && items.length ? (
           items.map((item, index) => {
             return (

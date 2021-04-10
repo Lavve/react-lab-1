@@ -1,12 +1,11 @@
-const Unchecked = ({ items, onCheckHandler }) => {
-  const listBlock = document.querySelector('.uncheckedList');
-  const toggleList = (e) => {
-    e.target.classList.toggle('open');
-    listBlock.classList.toggle('open');
-  };
+import React, { useState, useEffect } from 'react';
+import Badge from './Badge';
 
-  const Badge = ({ txt }) => {
-    return <span className="badge badge-warning">{txt}</span>;
+const Unchecked = ({ items, onCheckHandler }) => {
+  const [isOpen, setIsOpen] = useState(true);
+
+  const toggleList = () => {
+    setIsOpen(!isOpen);
   };
 
   const Button = ({ name, clicker }) => {
@@ -17,15 +16,22 @@ const Unchecked = ({ items, onCheckHandler }) => {
     );
   };
 
+  useEffect(() => {
+    setIsOpen(items.length);
+  }, [items]);
+
   return (
-    <div className="card border-secondary mb-3 shadow">
-      <div className="card-header text-light bg-dark h3 d-flex justify-content-between">
-        <span>Oklara grejer {items.length ? <Badge txt={items.length} /> : null}</span>
-        <button type="button" className="btn text-light open" onClick={toggleList}>
-          <span className="oi oi-chevron-bottom"></span>
-        </button>
+    <div className={`card border-secondary mb-3 ${isOpen ? 'open' : ''}`}>
+      <div
+        className="card-header text-light bg-dark h3 d-flex align-items-center justify-content-between"
+        onClick={toggleList}
+      >
+        <span>
+          Oklara grejer <Badge num={items.length} type="warning" />
+        </span>
+        <span className="oi oi-chevron-bottom"></span>
       </div>
-      <div className="card-body bg-secondary pb-2 uncheckedList open">
+      <div className="card-body bg-secondary pb-2 uncheckedList">
         <div className="row mb-2">
           {items && items.length ? (
             items.map((item, index) => {
